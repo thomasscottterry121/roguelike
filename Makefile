@@ -59,7 +59,7 @@ install: $(MAIN)
 
 lc:
 	@echo "LINES IN PROJECT"
-	@wc -l $(SRCDIR)/* $(DOCDIR)/* $(INCDIR)/* Makefile
+	@wc -l $(SRCDIR)/* $(DOCDIR)/* $(INCDIR)/* Makefile *.md CHANGELOG
 
 list:
 	@ls * -R
