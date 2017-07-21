@@ -3,7 +3,6 @@
 #include<game.h>
 void Intro(){
 	std::cout << "Welcome to spacehack" << std::endl;
-	std::cout << "Press a key to play";
 }
 
 void Draw(Screen *s, Game *g){
@@ -20,13 +19,16 @@ int Update(int input, Game *g){
 
 int main(void){
         Intro();
-	getch();
+
 	Screen *s = new Screen();
 	Game *g = new Game();
+
 	Draw(s,g);
-        while(Update(GetInput(s),g)){
+	do{
                 Draw(s, g);
-        }
+        }while( Update( GetInput(s) , g) );
+
+
 	delete s;
 	delete g;
         return 0;
