@@ -1,8 +1,8 @@
-
 OBJDIR=obj
 BINDIR=bin
 SRCDIR=src
 INCDIR=inc
+DOCDIR=doc
 
 CPPFLAGS=-g -Wall -I$(INCDIR) -lncurses
 
@@ -56,3 +56,10 @@ run: clean $(MAIN)
 install: $(MAIN)
 	@install $(MAIN) /usr/$(MAIN)
 	@echo "INSTALL $(MAIN)"
+
+lc:
+	@echo "LINES IN PROJECT"
+	@wc -l $(SRCDIR)/* $(DOCDIR)/* $(INCDIR)/* Makefile
+
+list:
+	@ls * -R

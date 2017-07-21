@@ -1,4 +1,5 @@
 #include<game.h>
+#include<screen.h>
 int Game::Update(int input){
 	switch(input){
 		case '4':

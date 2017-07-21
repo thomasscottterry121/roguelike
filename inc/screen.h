@@ -1,6 +1,8 @@
 #pragma once
+class Game;
 #include<game.h>
 #include<curses.h>
+
 class Screen{
 	private:
 		WINDOW *message, *stat, *map;

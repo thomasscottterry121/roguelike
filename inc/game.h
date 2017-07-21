@@ -1,4 +1,5 @@
 #pragma once
+#include<screen.h>
 
 class Game{
 	public:

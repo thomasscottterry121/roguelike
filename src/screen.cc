@@ -5,6 +5,10 @@ Screen::Screen(){
 	cbreak();
 	noecho();
 	curs_set(0);
+	start_color();
+	init_pair(1, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(2, COLOR_RED, COLOR_BLACK);
+	init_pair(3, COLOR_GREEN, COLOR_BLACK);
 
 	this->message = newwin(2,80,0,0);
 	this->map = newwin(19, 80, 2, 0);
@@ -35,7 +39,10 @@ int Screen::getInput(){
 
 void Screen::draw(Game *g){
 	wclear(this->map);
+	attron(COLOR_PAIR(1));
 	mvwprintw(this->map,g->playerY, g->playerX, "@");
+	attroff(COLOR_PAIR(1));
 	wrefresh(stdscr);
 	wrefresh(this->map);
 }
+
