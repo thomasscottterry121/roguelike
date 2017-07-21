@@ -2,8 +2,8 @@ CPPFLAGS=-g -Wall -Iinc
 
 SOURCES=$(wildcard src/*.cc)
 OBJECTS=$(patsubst src/%.cc,obj/%.o,$(SOURCES))
-
-
+MAIN=spacehack
+GITLOG=1.log
 obj/%.o : src/%.cc
 	@g++ $(CPPFLAGS) -c $< -o $@
 	@echo "CXX $@"
@@ -13,24 +13,24 @@ $(OJBECTS): obj/%.o : src/%.cc
 	@echo "CXX $@"
 
 
-main: $(OBJECTS)
+$(MAIN): $(OBJECTS)
 	@g++ $(CPPFLAGS) -o main $(OBJECTS)
 	@echo "LINK $@"
 
 clean:
 	@rm $(OBJECTS) -f
 	@echo "RM $(OBJECTS)"
-	@rm main -f
-	@echo "RM main"
-	@rm git.log -f
-	@echo "RM git.log"
+	@rm $(MAIN) -f
+	@echo "RM $(MAIN)"
+	@rm $(GITLOG) -f
+	@echo "RM $(GITLOG)"
 
 git: clean
-	@git add src/*.cc >> git.log
-	@git add inc/*.h >> git.log
-	@git add README.md >> git.log
-	@git add doc/* >> git.log
-	@git add Makefile >> git.log
+	@git add src/*.cc >> $(GITLOG)
+	@git add inc/*.h >> $(GITLOG)
+	@git add README.md >> $(GITLOG)
+	@git add doc/* >> $(GITLOG)
+	@git add Makefile >> $(GITLOG)
 	@git commit || true
 	@git push || true
 
