@@ -1,4 +1,4 @@
-CPPFLAGS=-g -Wall -Iinc
+CPPFLAGS=-g -Wall -Iinc -lncurses
 
 SOURCES=$(wildcard src/*.cc)
 OBJECTS=$(patsubst src/%.cc,obj/%.o,$(SOURCES))
@@ -14,7 +14,7 @@ $(OJBECTS): obj/%.o : src/%.cc
 
 
 $(MAIN): $(OBJECTS)
-	@g++ $(CPPFLAGS) -o main $(OBJECTS)
+	@g++ $(CPPFLAGS) -o $(MAIN) $(OBJECTS) -lncurses
 	@echo "LINK $@"
 
 clean:

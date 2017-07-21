@@ -1,8 +1,12 @@
 #pragma once
 #include<game.h>
+#include<curses.h>
 class Screen{
+	private:
+		WINDOW *message, *stat, *map;
 	public:
-		Screen(){};
-		int getInput(){return 1;};
-		void draw(Game *g){}
+		Screen();
+		~Screen();
+		int getInput();
+		void draw(Game *g);
 };
