@@ -1,17 +1,29 @@
 CPPFLAGS=-g -Wall -Iinc
 
 SOURCES=$(wildcard src/*.cc)
-OBJECTS=$(patsubst %.cc,%.o,$(SOURCES))
+OBJECTS=$(patsubst src/%.cc,obj/%.o,$(SOURCES))
+
+
+obj/%.o : src/%.cc
+	@g++ $(CPPFLAGS) -c $< -o $@
+	@echo "CXX $@"
+
+$(OJBECTS): obj/%.o : src/%.cc
+	@g++ $(CPPFLAGS) -c $< -o $@
+	@echo "CXX $@"
+
 
 main: $(OBJECTS)
-	g++ $(CPPFLAGS) -o main $^
-
-$(OJBECTS): $(SOURCES)
-	g++ $(CPPFLAGS) -o $@ -c $^
+	@g++ $(CPPFLAGS) -o main $(OBJECTS)
+	@echo "LINK $@"
 
 clean:
-	rm src/*.o
-	rm main
+	@rm $(OBJECTS) -f
+	@echo "RM $(OBJECTS)"
+	@rm main -f
+	@echo "RM main"
+	@rm git.log -f
+	@echo "RM git.log"
 
 git: clean
 	@git add src/*.cc >> git.log
