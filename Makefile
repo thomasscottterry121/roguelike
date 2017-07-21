@@ -13,7 +13,7 @@ clean:
 	rm src/*.o
 	rm main
 
-git:
+git: clean
 	@git add src/*.cc >> git.log
 	@git add inc/*.h >> git.log
 	@git add README.md >> git.log

@@ -1,5 +1,26 @@
 #include<iostream>
 
+void Intro(){
+
+}
+
+void Draw(){
+
+}
+
+int GetInput(){
+	return 1;
+}
+void Update(int input){
+
+}
+
+
 int main(void){
-	return 0;
+        Intro();
+        while(1){
+                Draw();
+                Update(GetInput());
+        }
+        return 0;
 }
