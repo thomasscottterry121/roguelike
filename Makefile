@@ -19,6 +19,6 @@ git:
 	@git add README.md >> git.log
 	@git add doc/* >> git.log
 	@git add Makefile >> git.log
-	@git commit
-	@git push
+	@git commit || true
+	@git push || true
 
