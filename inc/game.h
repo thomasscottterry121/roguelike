@@ -1,6 +1,6 @@
 #pragma once
 #include<screen.h>
-
+#include<main.h>
 class Game{
 	public:
 		Game(){ 

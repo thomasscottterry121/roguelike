@@ -27,7 +27,7 @@ $(BINDIR):
 	@echo "MKDIR $(BINDIR)"
 $(OBJDIR):
 	@mkdir $(OBJDIR)
-	@echo "MKDIR $(BINDIR)"
+	@echo "MKDIR $(OBJDIR)"
 
 clean:
 	@rm $(OBJECTS) -f

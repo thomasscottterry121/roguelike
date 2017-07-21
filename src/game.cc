@@ -17,6 +17,7 @@ int Game::Update(int input){
 		case 'q':
 			return 0;
 		default:
+			screenMessage((char *)"Key not implemented");
 			break;
 	}
 	return 1;

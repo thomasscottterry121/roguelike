@@ -10,5 +10,8 @@ class Screen{
 		Screen();
 		~Screen();
 		int getInput();
-		void draw(Game *g);
+		void draw(int px, int py);
+		void pMessage(char *message);
+		void clearMessage();
+		void refreshMessage();
 };

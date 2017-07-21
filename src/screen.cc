@@ -37,12 +37,23 @@ int Screen::getInput(){
 	return getch();
 }
 
-void Screen::draw(Game *g){
+void Screen::draw(int px, int py){
 	wclear(this->map);
-	attron(COLOR_PAIR(1));
-	mvwprintw(this->map,g->playerY, g->playerX, "@");
-	attroff(COLOR_PAIR(1));
+	wattron(this->map,COLOR_PAIR(1));
+	mvwprintw(this->map,py, px, "@");
+	wattroff(this->map, COLOR_PAIR(1));
 	wrefresh(stdscr);
 	wrefresh(this->map);
 }
 
+void Screen::pMessage(char *message){
+	mvwprintw(this->message,0,1,message);
+}
+
+void Screen::refreshMessage(){
+	wrefresh(this->message);
+}
+
+void Screen::clearMessage(){
+	wclear(this->message);
+}
