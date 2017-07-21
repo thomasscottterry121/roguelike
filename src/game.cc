@@ -22,8 +22,8 @@ int Game::Update(int input){
 }
 
 void Game::movePlayer(int mx, int my){
-	if(this->playerX + mx < 79 && this->playerY + my < 20 &&
-		 this->playerX + mx > 0 && this->playerY+my > 0){
+	if(this->playerX + mx < 80 && this->playerY + my < 19 &&
+		 this->playerX + mx > -1 && this->playerY+my > -1){
 		this->playerX+=mx;
 		this->playerY+=my;
 	}

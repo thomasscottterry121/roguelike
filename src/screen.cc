@@ -6,9 +6,9 @@ Screen::Screen(){
 	noecho();
 	curs_set(0);
 
-	this->message = newwin(1,79,0,0);
-	this->map = newwin(20, 79, 1, 0);
-	this->stat = newwin(3, 79, 21, 0);
+	this->message = newwin(2,80,0,0);
+	this->map = newwin(19, 80, 2, 0);
+	this->stat = newwin(3, 80, 21, 0);
 	wclear(stdscr);
 	wrefresh(stdscr);
 	wclear(this->message);
