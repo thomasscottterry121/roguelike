@@ -7,6 +7,12 @@ typedef struct Player{
 	int Str,Int,Xp,Mp;
 }Player;
 
+typedef struct Tile{
+	char c;
+	bool walk;
+	bool door;
+}Tile;
+
 class Game{
 	public:
 		Game();
@@ -14,6 +20,8 @@ class Game{
 		int Update(int input);
 		char **Map;
 		bool **mWalk;
+		Tile **map;
 	private:
 		void movePlayer(int mx, int my);
+		void OpenClose(int x, int y);
 };

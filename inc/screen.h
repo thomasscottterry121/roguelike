@@ -10,7 +10,7 @@ class Screen{
 		Screen();
 		~Screen();
 		int getInput();
-		void draw(int px, int py, char **map);
+		void draw(int px, int py, struct Tile **map);
 		void pMessage(char *message);
 		void clearMessage();
 		void refreshMessage();

@@ -37,10 +37,12 @@ int Screen::getInput(){
 	return getch();
 }
 
-void Screen::draw(int px, int py, char **map){
+void Screen::draw(int px, int py, struct Tile **map){
 	wclear(this->map);
 	for(int y = 0; y < 20; y++){
-		mvwprintw(this->map,y,0,map[y]);
+		for(int x = 0; x<80; x++){
+			mvwprintw(this->map,y,x,&map[y][x].c);
+		}
 	}
         wattron(this->map,COLOR_PAIR(1));
         mvwprintw(this->map,py, px, "@");
