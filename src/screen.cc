@@ -8,7 +8,8 @@
  */
 #include<screen.h>
 
-Screen::Screen(){
+Screen::Screen()
+{
 	initscr();
 	cbreak();
 	noecho();
@@ -18,7 +19,7 @@ Screen::Screen(){
 	init_pair(2, COLOR_RED, COLOR_BLACK);
 	init_pair(3, COLOR_GREEN, COLOR_BLACK);
 
-	this->message = newwin(2,80,0,0);
+	this->message = newwin(2, 80, 0, 0);
 	this->map = newwin(19, 80, 2, 0);
 	this->stat = newwin(3, 80, 21, 0);
 	wclear(stdscr);

@@ -24,7 +24,8 @@ void Game::OpenClose(int x, int y){
 	else
 	{
 		return;
-}	}
+	}
+}
 
 int Game::Update(int input){
 	screenMessage((char *)" ");
@@ -87,9 +88,12 @@ void Game::movePlayer(int mx, int my){
 		this->map[this->player->y+my][this->player->x+mx].walk == true){
 		this->player->x+=mx;
 		this->player->y+=my;
-	} else if (this->map[this->player->y+my][this->player->x+mx].door){
+	}
+	else if (this->map[this->player->y+my][this->player->x+mx].door)
+	{
 		this->OpenClose(this->player->x+mx, this->player->y+my);
-}	}
+	}
+}
 
 Game::Game(){
 	this->player = new Player;
