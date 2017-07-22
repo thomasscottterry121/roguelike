@@ -2,21 +2,16 @@
 #include<screen.h>
 #include<game.h>
 #include<main.h>
+
 Screen *s;
-void Intro(){
-	std::cout << "Welcome to spacehack" << std::endl;
-}
+
+void Intro(){ std::cout << "Welcome to spacehack" << std::endl;}
+int GetInput(Screen *s){ return s->getInput();}
+int Update(int input, Game *g){ return g->Update(input);}
 
 void Draw(Screen *s, Game *g){
 	s->draw(g->player->x, g->player->y, g->map);
 	s->printStat(g->player);
-}
-
-int GetInput(Screen *s){
-	return s->getInput();
-}
-int Update(int input, Game *g){
-	return g->Update(input);
 }
 
 
@@ -27,9 +22,8 @@ int main(void){
 	Game *g = new Game();
 
 	Draw(s,g);
-	do{
-                Draw(s, g);
-        }while( Update( GetInput(s) , g) );
+	do { Draw(s, g); }
+	while ( Update( GetInput(s) , g) );
 
 
 	delete s;

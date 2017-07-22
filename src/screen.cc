@@ -39,13 +39,13 @@ int Screen::getInput(){
 
 void Screen::draw(int px, int py, struct Tile **map){
 	wclear(this->map);
-	for(int y = 0; y < 20; y++){
-		for(int x = 0; x<80; x++){
-			mvwprintw(this->map,y,x,&map[y][x].c);
+	for (int y = 0; y < 20; y++){
+		for (int x = 0; x<80; x++){
+			mvwprintw(this->map, y, x, &map[y][x].c);
 		}
 	}
-        wattron(this->map,COLOR_PAIR(1));
-        mvwprintw(this->map,py, px, "@");
+        wattron(this->map, COLOR_PAIR(1));
+        mvwprintw(this->map, py, px, "@");
         wattroff(this->map, COLOR_PAIR(1));
 
 	wrefresh(stdscr);
@@ -53,19 +53,15 @@ void Screen::draw(int px, int py, struct Tile **map){
 }
 
 void Screen::pMessage(char *message){
-	mvwprintw(this->message,0,1,message);
+	mvwprintw(this->message, 0, 1, message);
 }
 
-void Screen::refreshMessage(){
-	wrefresh(this->message);
-}
+void Screen::refreshMessage(){ wrefresh(this->message);}
 
-void Screen::clearMessage(){
-	wclear(this->message);
-}
+void Screen::clearMessage(){ wclear(this->message);}
 
 void Screen::printStat(Player *p){
 	wclear(this->stat);
-	mvwprintw(this->stat,0,1,"Strength: %d Intelligience: %d Magic: %d", p->Str, p->Int, p->Mp);
+	mvwprintw(this->stat, 0, 1, "Strength: %d Intelligience: %d Magic: %d", p->Str, p->Int, p->Mp);
 	wrefresh(this->stat);
 }
