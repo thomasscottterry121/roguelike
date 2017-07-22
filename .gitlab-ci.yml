@@ -1,0 +1,8 @@
+build:
+  script: 
+    - make
+  artifacts:
+    paths:
+      - bin/spacehack
+      - obj/*
+
