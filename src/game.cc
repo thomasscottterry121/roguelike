@@ -3,7 +3,7 @@
 
 
 void Game::OpenClose(int x, int y){
-	if(this->map[y][x].door && !(this->map[y][x].walk)){
+	if(this->map[y][x].door && this->map[y][x].walk != true){
 		this->map[y][x].c='\'';
 		this->map[y][x].walk = true;
 	} else if(this->map[y][x].door){

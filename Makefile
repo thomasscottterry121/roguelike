@@ -47,8 +47,9 @@ git: clean
 	@git add README.md >> $(GITLOG)
 	@git add doc/* >> $(GITLOG)
 	@git add Makefile >> $(GITLOG)
+	@git pull github master
 	@git commit || true
-	@git push || true
+	@git push github || true
 
 run: clean $(MAIN)
 	@$(MAIN)
