@@ -1,5 +1,9 @@
 language: c++
 
-install: make libncurses5-dev
+addons:
+  apt:
+    packages:
+    - make
+    - libncurses5-dev
 
 script: make
