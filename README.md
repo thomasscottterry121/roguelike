@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/thomasscottterry121/roguelike.svg?branch=master)](https://travis-ci.org/thomasscottterry121/roguelike)
+
 Prepare your programming environment. Choose your language and platform, choose appropriate compilers/interpreters, editor, version control, automated build, and other utilities. Set them up so that you're comfortable with them.
 Decide on which libraries you're going to use -- it can change later, but it's usually a painful change. Don't think too much about portability -- it can be fixed later. Think about what you need and what you're comfortable with.
 Decide on the language you want to write comments and object names in your code, as well as the language you want to be used in your game. It's strongly recommended to use English in your source code -- you can get more help this way from others.
