@@ -1,14 +1,19 @@
 #pragma once
 #include<screen.h>
 #include<main.h>
+#include<stdlib.h>
+typedef struct Player{
+	int x,y;
+	int Str,Int,Xp,Mp;
+}Player;
+
 class Game{
 	public:
-		Game(){ 
-			this->playerX = 10;
-			this->playerY = 10;
-		};
-		int playerX, playerY;
+		Game();
+		Player *player;
 		int Update(int input);
+		char **Map;
+		bool **mWalk;
 	private:
 		void movePlayer(int mx, int my);
 };

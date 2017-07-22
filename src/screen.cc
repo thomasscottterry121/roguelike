@@ -37,11 +37,15 @@ int Screen::getInput(){
 	return getch();
 }
 
-void Screen::draw(int px, int py){
+void Screen::draw(int px, int py, char **map){
 	wclear(this->map);
-	wattron(this->map,COLOR_PAIR(1));
-	mvwprintw(this->map,py, px, "@");
-	wattroff(this->map, COLOR_PAIR(1));
+	for(int y = 0; y < 20; y++){
+		mvwprintw(this->map,y,0,map[y]);
+	}
+        wattron(this->map,COLOR_PAIR(1));
+        mvwprintw(this->map,py, px, "@");
+        wattroff(this->map, COLOR_PAIR(1));
+
 	wrefresh(stdscr);
 	wrefresh(this->map);
 }
@@ -56,4 +60,10 @@ void Screen::refreshMessage(){
 
 void Screen::clearMessage(){
 	wclear(this->message);
+}
+
+void Screen::printStat(Player *p){
+	wclear(this->stat);
+	mvwprintw(this->stat,0,1,"Strength: %d Intelligience: %d Magic: %d", p->Str, p->Int, p->Mp);
+	wrefresh(this->stat);
 }

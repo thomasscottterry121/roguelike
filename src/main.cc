@@ -8,7 +8,8 @@ void Intro(){
 }
 
 void Draw(Screen *s, Game *g){
-	s->draw(g->playerX, g->playerY);
+	s->draw(g->player->x, g->player->y, g->Map);
+	s->printStat(g->player);
 }
 
 int GetInput(Screen *s){

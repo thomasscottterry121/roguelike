@@ -10,7 +10,7 @@ SOURCES=$(wildcard $(SRCDIR)/*.cc)
 OBJECTS=$(patsubst $(SRCDIR)/%.cc,$(OBJDIR)/%.o,$(SOURCES))
 
 
-MAIN=$(BINDIR)/spacehack
+MAIN=$(BINDIR)/roguelike
 GITLOG=1.log
 
 obj/%.o : src/%.cc $(OBJDIR)
