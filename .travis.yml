@@ -2,7 +2,6 @@ language: c++
 
 env:
   - ARCH=x64
-  - ARCH=arm
 
 addons:
   apt:
