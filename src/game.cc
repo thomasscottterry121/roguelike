@@ -89,7 +89,8 @@ void Game::movePlayer(int mx, int my)
 {
 	if (this->player->x + mx < 80 && this->player->y + my < 19 &&
 		 this->player->x + mx > -1 && this->player->y+my > -1 &&
-		this->map[this->player->y+my][this->player->x+mx].walk == true){
+		this->map[this->player->y+my][this->player->x+mx].walk == true)
+	{
 		this->player->x+=mx;
 		this->player->y+=my;
 	}
