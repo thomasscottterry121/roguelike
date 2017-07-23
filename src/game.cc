@@ -31,7 +31,8 @@ void Game::OpenClose(int x, int y)
 int Game::Update(int input)
 {
 	screenMessage((char *)" ");
-	switch (input){
+	switch (input)
+	{
 		case 1:
 			screenMessage((char *)"You enterd a ctrl key");
 			break;

@@ -51,7 +51,8 @@ int Screen::getInput()
 void Screen::draw(int px, int py, struct Tile **map)
 {
 	wclear(this->map);
-	for (int y = 0; y < 20; y++){
+	for (int y = 0; y < 20; y++)
+	{
 		for (int x = 0; x<80; x++){
 			mvwprintw(this->map, y, x, &map[y][x].c);
 		}
