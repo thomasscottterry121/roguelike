@@ -42,6 +42,7 @@ clean:
 
 git: clean
 	@git add $(SRCDIR)/*.cc >> $(GITLOG)
+	@git add .*.yml
 	@git add $(INCDIR)/*.h >> $(GITLOG)
 	@git add README.md >> $(GITLOG)
 	@git add doc/* >> $(GITLOG)
