@@ -11,3 +11,9 @@ addons:
     - libncurses5-dev
 
 script: make
+
+deploy:
+	provider: bintray
+	file: .deploy
+	user: thomasscottterry121
+	key: 19d7807a4f8df023fe0bfc5219fbdfc93fea09c0
