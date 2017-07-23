@@ -32,7 +32,8 @@ Screen::Screen()
 	wrefresh(this->message);
 }
 
-Screen::~Screen(){
+Screen::~Screen()
+{
 	delwin( this->message);
 	delwin( this->map);
 	delwin( this->stat);
@@ -42,11 +43,13 @@ Screen::~Screen(){
 	endwin();
 }
 
-int Screen::getInput(){
+int Screen::getInput()
+{
 	return getch();
 }
 
-void Screen::draw(int px, int py, struct Tile **map){
+void Screen::draw(int px, int py, struct Tile **map)
+{
 	wclear(this->map);
 	for (int y = 0; y < 20; y++){
 		for (int x = 0; x<80; x++){
@@ -61,7 +64,8 @@ void Screen::draw(int px, int py, struct Tile **map){
 	wrefresh(this->map);
 }
 
-void Screen::pMessage(char *message){
+void Screen::pMessage(char *message)
+{
 	mvwprintw(this->message, 0, 1, message);
 }
 

@@ -10,7 +10,8 @@
 #include<screen.h>
 
 
-void Game::OpenClose(int x, int y){
+void Game::OpenClose(int x, int y)
+{
 	if (this->map[y][x].door && this->map[y][x].walk != true)
 	{
 		this->map[y][x].c='\'';
@@ -27,7 +28,8 @@ void Game::OpenClose(int x, int y){
 	}
 }
 
-int Game::Update(int input){
+int Game::Update(int input)
+{
 	screenMessage((char *)" ");
 	switch (input){
 		case 1:
@@ -82,7 +84,8 @@ int Game::Update(int input){
 	return 1;
 }
 
-void Game::movePlayer(int mx, int my){
+void Game::movePlayer(int mx, int my)
+{
 	if (this->player->x + mx < 80 && this->player->y + my < 19 &&
 		 this->player->x + mx > -1 && this->player->y+my > -1 &&
 		this->map[this->player->y+my][this->player->x+mx].walk == true){
@@ -95,7 +98,8 @@ void Game::movePlayer(int mx, int my){
 	}
 }
 
-Game::Game(){
+Game::Game()
+{
 	this->player = new Player;
 	player->x = 10;
 	player->y = 10;

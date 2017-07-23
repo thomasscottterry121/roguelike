@@ -32,7 +32,7 @@ int main(void)
 
 	Draw(s, g);
 	do { Draw(s, g); }
-	while ( Update( GetInput(s) , g) );
+	while ( Update( GetInput(s), g) );
 
 
 	delete s;
@@ -40,7 +40,8 @@ int main(void)
         return 0;
 }
 
-void screenMessage(char *message){
+void screenMessage(char *message)
+{
 	s->clearMessage();
 	s->pMessage(message);
 	s->refreshMessage();
