@@ -3,7 +3,6 @@ BINDIR=bin
 SRCDIR=src
 INCDIR=inc
 DOCDIR=doc
-
 CPPFLAGS=-g -Wall -I$(INCDIR) -lncurses
 
 SOURCES=$(wildcard $(SRCDIR)/*.cc)
