@@ -1,5 +1,6 @@
 # Spacehack
 [![Build Status](https://travis-ci.org/thomasscottterry121/roguelike.svg?branch=master)](https://travis-ci.org/thomasscottterry121/roguelike)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/262af50ee3cc4bbeae3ee52b5ab4656c)](https://www.codacy.com/app/thomasscottterry12/roguelike?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=thomasscottterry121/roguelike&amp;utm_campaign=Badge_Grade)
 
 
 
