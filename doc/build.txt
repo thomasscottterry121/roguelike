@@ -1,8 +1,0 @@
-Linux:
-	1. Install the required libraries with:
-		"sudo apt-get install git libncurses5-dev build-essential"
-	
-	2. go into the main directory
-		"cd spacehack"
-	3. run make:
-		"make"
