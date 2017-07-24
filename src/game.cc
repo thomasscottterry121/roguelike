@@ -18,7 +18,7 @@
  */
 char *getStr(char *prompt){
 	char *line = (char *)malloc(sizeof(char) * 80);
-	mvprintw(1,1, prompt);
+	mvprintw(1, 1, prompt);
 	echo();
 	getstr(line);
 	noecho();
@@ -27,7 +27,7 @@ char *getStr(char *prompt){
 
 void Game::OpenClose(int x, int y)
 {
-	if (this->map[y][x].door && this->map[y][x].walk != true)
+	if (this->map[y][x].type == TYPE_DOOR && this->map[y][x].walk != true)
 	{
 		this->map[y][x].c='\'';
 		this->map[y][x].walk = true;
@@ -129,7 +129,7 @@ void Game::movePlayer(int mx, int my)
 			this->player->x+=mx;
 			this->player->y+=my;
 		}
-		else if (this->map[this->player->y+my][this->player->x+mx].door)
+		else if (this->map[this->player->y+my][this->player->x+mx].type == TYPE_DOOR)
 		{
 			this->OpenClose(this->player->x+mx, this->player->y+my);
 		}
@@ -159,26 +159,26 @@ Game::Game()
 		for (int x = 0; x < 80; x++){
 			this->map[y][x].c = '+';
 			this->map[y][x].walk = false;
-			this->map[y][x].door = true;
+			this->map[y][x].type = TYPE_DOOR;
                 }
         }
         this->map[10][10].c = '.';
         this->map[10][10].walk = true;
-        this->map[10][10].door = false;
+        this->map[10][10].type = TYPE_FLOOR;
 }
 
 int Game::Save(){
 	std::ofstream savefile;
 	savefile.open(getStr((char *)"Save to: "), std::ios::out | std::ios::binary);
-	if(savefile.is_open() == false){
+	if (savefile.is_open() == false){
 		return -1;
 	}
-	for(int y = 0; y < 19; y++){
-		for(int x = 0; x < 80; x++){
+	for (int y = 0; y < 19; y++){
+		for (int x = 0; x < 80; x++){
 			savefile.write((char*)&(this->map[y][x]),
 				sizeof(this->map[y][x]));
 		}
-		savefile.write("\n",sizeof(char));
+		savefile.write("\n", sizeof(char));
 	}
 	savefile.write((char*)(this->player), sizeof(this->player));
 	savefile.close();
@@ -197,11 +197,9 @@ int Game::Load(){
                         savefile.read((char*)&(this->map[y][x]),
                                 sizeof(this->map[y][x]));
                 }
-		savefile.read(&buffer,sizeof(char));
+		savefile.read(&buffer, sizeof(char));
         }
         savefile.read((char*)(this->player), sizeof(this->player));
         savefile.close();
         return 1;
 }
-
-

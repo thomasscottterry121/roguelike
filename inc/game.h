@@ -10,6 +10,17 @@
 #include<screen.h>
 #include<main.h>
 #include<stdlib.h>
+
+#define CHAR_MONEY '$'
+#define TYPE_MONEY 0
+#define CHAR_PLAYER '@'
+#define TYPE_PLAYER 1
+#define CHAR_DOOR '+'
+#define TYPE_DOOR 2
+#define CHAR_FLOOR '.'
+#define TYPE_FLOOR 3
+#define CHAR_WALL '#'
+#define TYPE_WALL 4
 /*! The main player structure */
 typedef struct Player{
 	int x,y;
@@ -21,6 +32,7 @@ typedef struct Tile{
 	char c;
 	bool walk;
 	bool door;
+	int type;
 }Tile;
 
 /*! the class holding the map and player and responsible for managing them */
