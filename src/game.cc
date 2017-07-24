@@ -16,7 +16,8 @@
  * \param x  The X coordinate of the door
  * \param y  The Y coordinate of the door
  */
-char *getStr(char *prompt){
+char *getStr(char *prompt)
+{
 	char *line = (char *)malloc(sizeof(char) * 80);
 	mvprintw(1, 1, prompt);
 	echo();
@@ -189,11 +190,11 @@ int Game::Load(){
 	char buffer;
         std::ifstream savefile;
         savefile.open(getStr((char *)"Load From: "), std::ios::in | std::ios::binary);
-        if(savefile.is_open() == false){
+        if (savefile.is_open() == false){
                 return -1;
         }
-        for(int y = 0; y < 19; y++){
-                for(int x = 0; x < 80; x++){
+        for (int y = 0; y < 19; y++){
+                for (int x = 0; x < 80; x++){
                         savefile.read((char*)&(this->map[y][x]),
                                 sizeof(this->map[y][x]));
                 }
