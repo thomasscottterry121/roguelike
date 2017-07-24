@@ -129,4 +129,7 @@ ENV/
 *.exe
 *.out
 *.app
+# Random files
+*.sav
+.*.sav
 >>>>>>> 4a1173f61c0c99ca2270b61a09a14bb68341686d

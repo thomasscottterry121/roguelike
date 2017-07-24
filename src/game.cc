@@ -8,12 +8,23 @@
  */
 #include<game.h>
 #include<screen.h>
-
+#include<iostream>
+#include<fstream>
+#include<curses.h>
 /*! Check if there is a door at the given location on the map and if there is
  *! attempt to toggle whether it is open or closed.
  * \param x  The X coordinate of the door
  * \param y  The Y coordinate of the door
  */
+char *getStr(char *prompt){
+	char *line = (char *)malloc(sizeof(char) * 80);
+	mvprintw(1,1, prompt);
+	echo();
+	getstr(line);
+	noecho();
+	return line;
+}
+
 void Game::OpenClose(int x, int y)
 {
 	if (this->map[y][x].door && this->map[y][x].walk != true)
@@ -84,7 +95,13 @@ int Game::Update(int input)
 		case 'Q':
 			screenMessage((char *)"You quiver some arrows");
 			break;
+		case 'S':
+		case 's':
+			this->Save();
+			break;
 		case 'O':
+		case 'o':
+			this->Load();
 			break;
 		case 27:
 			return 0;
@@ -104,15 +121,18 @@ int Game::Update(int input)
 void Game::movePlayer(int mx, int my)
 {
 	if (this->player->x + mx < 80 && this->player->y + my < 19 &&
-		 this->player->x + mx > -1 && this->player->y+my > -1 &&
-		this->map[this->player->y+my][this->player->x+mx].walk == true)
-	{
-		this->player->x+=mx;
-		this->player->y+=my;
-	}
-	else if (this->map[this->player->y+my][this->player->x+mx].door)
-	{
-		this->OpenClose(this->player->x+mx, this->player->y+my);
+                 this->player->x + mx > -1 && this->player->y+my > -1){
+		if (this->player->x + mx < 80 && this->player->y + my < 19 &&
+			 this->player->x + mx > -1 && this->player->y+my > -1 &&
+			this->map[this->player->y+my][this->player->x+mx].walk == true)
+		{
+			this->player->x+=mx;
+			this->player->y+=my;
+		}
+		else if (this->map[this->player->y+my][this->player->x+mx].door)
+		{
+			this->OpenClose(this->player->x+mx, this->player->y+my);
+		}
 	}
 }
 
@@ -137,37 +157,51 @@ Game::Game()
 		this->mWalk[y] = new bool[80];
 		this->map[y] = new Tile[80];
 		for (int x = 0; x < 80; x++){
-        		this->Map[y][x] = '.';
-                        this->mWalk[y][x] = true;
-			this->map[y][x].c = '.';
-			this->map[y][x].walk = true;
+			this->map[y][x].c = '+';
+			this->map[y][x].walk = false;
+			this->map[y][x].door = true;
                 }
         }
-	this->map[4][4].c = '+';
-	this->map[4][4].walk = false;
-	this->map[4][4].door = true;
-        this->map[5][4].c = '+';
-        this->map[5][4].walk = false;
-        this->map[5][4].door = true;
-        this->map[4][5].c = '+';
-        this->map[4][5].walk = false;
-        this->map[4][5].door = true;
-        this->map[4][6].c = '+';
-        this->map[4][6].walk = false;
-        this->map[4][6].door = true;
-        this->map[6][4].c = '+';
-        this->map[6][4].walk = false;
-        this->map[6][4].door = true;
-        this->map[6][5].c = '+';
-        this->map[6][5].walk = false;
-        this->map[6][5].door = true;
-        this->map[6][6].c = '+';
-        this->map[6][6].walk = false;
-        this->map[6][6].door = true;
-        this->map[6][6].c = '+';
-        this->map[6][6].walk = false;
-        this->map[6][6].door = true;
-        this->map[5][6].c = '+';
-        this->map[5][6].walk = false;
-        this->map[5][6].door = true;
+        this->map[10][10].c = '.';
+        this->map[10][10].walk = true;
+        this->map[10][10].door = false;
 }
+
+int Game::Save(){
+	std::ofstream savefile;
+	savefile.open(getStr((char *)"Save to: "), std::ios::out | std::ios::binary);
+	if(savefile.is_open() == false){
+		return -1;
+	}
+	for(int y = 0; y < 19; y++){
+		for(int x = 0; x < 80; x++){
+			savefile.write((char*)&(this->map[y][x]),
+				sizeof(this->map[y][x]));
+		}
+		savefile.write("\n",sizeof(char));
+	}
+	savefile.write((char*)(this->player), sizeof(this->player));
+	savefile.close();
+	return 1;
+}
+
+int Game::Load(){
+	char buffer;
+        std::ifstream savefile;
+        savefile.open(getStr((char *)"Load From: "), std::ios::in | std::ios::binary);
+        if(savefile.is_open() == false){
+                return -1;
+        }
+        for(int y = 0; y < 19; y++){
+                for(int x = 0; x < 80; x++){
+                        savefile.read((char*)&(this->map[y][x]),
+                                sizeof(this->map[y][x]));
+                }
+		savefile.read(&buffer,sizeof(char));
+        }
+        savefile.read((char*)(this->player), sizeof(this->player));
+        savefile.close();
+        return 1;
+}
+
+

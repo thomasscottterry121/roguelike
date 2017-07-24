@@ -35,4 +35,6 @@ class Game{
 	private:
 		void movePlayer(int mx, int my);
 		void OpenClose(int x, int y);
+		int Save();
+		int Load();
 };
