@@ -9,7 +9,11 @@
 #include<game.h>
 #include<screen.h>
 
-
+/*! Check if there is a door at the given location on the map and if there is
+ *! attempt to toggle whether it is open or closed.
+ * \param x  The X coordinate of the door
+ * \param y  The Y coordinate of the door
+ */
 void Game::OpenClose(int x, int y)
 {
 	if (this->map[y][x].door && this->map[y][x].walk != true)
@@ -28,6 +32,12 @@ void Game::OpenClose(int x, int y)
 	}
 }
 
+/**
+ * The update method for the game, which gets input and does the correct
+ * action
+ * @params:
+ *	int input: the key that was pressed
+ */
 int Game::Update(int input)
 {
 	screenMessage((char *)" ");
@@ -85,6 +95,12 @@ int Game::Update(int input)
 	return 1;
 }
 
+/**
+ * Move the player
+ * @params:
+ * 	int mx: The number of squares in the X direction to move
+ *	int my: The number of squares in the Y direction to move
+ */
 void Game::movePlayer(int mx, int my)
 {
 	if (this->player->x + mx < 80 && this->player->y + my < 19 &&
@@ -100,6 +116,11 @@ void Game::movePlayer(int mx, int my)
 	}
 }
 
+
+/* The constructor, sets up the map and player
+ * @params:
+ *	none
+ */
 Game::Game()
 {
 	this->player = new Player;

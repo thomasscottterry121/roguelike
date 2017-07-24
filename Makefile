@@ -45,6 +45,7 @@ git: clean
 	@git pull github master
 	@git commit || true
 	@git push github || true
+	@git push || true
 
 run: clean $(MAIN)
 	@$(MAIN)
