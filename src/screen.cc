@@ -51,11 +51,13 @@ int Screen::getInput()
 void Screen::draw(int px, int py, struct Tile **map)
 {
 	wclear(this->map);
-	for (int y = 0; y < 20; y++)
+	for (int y = 0; y < 19; y++)
 	{
 		for (int x = 0; x<80; x++)
 		{
-			mvwprintw(this->map, y, x, &map[y][x].c);
+			if(map[y][x].seen == true){
+				mvwaddch(this->map, y, x, map[y][x].c);
+			}
 		}
 	}
         wattron(this->map, COLOR_PAIR(1));

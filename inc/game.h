@@ -33,12 +33,14 @@ typedef struct Tile{
 	bool walk;
 	bool door;
 	int type;
+	bool seen;
 }Tile;
 
 /*! the class holding the map and player and responsible for managing them */
 class Game{
 	public:
 		Game();
+		~Game();
 		Player *player;
 		int Update(int input);
 		char **Map;
@@ -49,4 +51,5 @@ class Game{
 		void OpenClose(int x, int y);
 		int Save();
 		int Load();
+		void see(int px, int py);
 };

@@ -129,10 +129,24 @@ void Game::movePlayer(int mx, int my)
 		{
 			this->player->x+=mx;
 			this->player->y+=my;
+			this->see(player->x, player->y);
 		}
 		else if (this->map[this->player->y+my][this->player->x+mx].type == TYPE_DOOR)
 		{
 			this->OpenClose(this->player->x+mx, this->player->y+my);
+		}
+	}
+}
+
+/*! Do LOS calc for the player
+ *
+ */
+void Game::see(int px, int py){
+	for (int y = py - 1; y <= py + 1; y++){
+		for (int x = px - 1; x <= px + 1; x++){
+			if(x < 80 && y < 19 && x > -1 && y > -1){
+				this->map[y][x].seen = true;
+			}
 		}
 	}
 }
@@ -150,24 +164,25 @@ Game::Game()
 	player->Str = 5;
 	player->Int = 4;
 	player->Mp = 9;
-	this->Map = new char*[20];
-	this->mWalk = new bool*[20];
 	this->map = new Tile*[20];
 	for (int y = 0; y < 19; y++){
-		this->Map[y] = new char[80];
-		this->mWalk[y] = new bool[80];
 		this->map[y] = new Tile[80];
 		for (int x = 0; x < 80; x++){
-			this->map[y][x].c = '+';
-			this->map[y][x].walk = false;
-			this->map[y][x].type = TYPE_DOOR;
+			this->map[y][x].c = '.';
+			this->map[y][x].walk = true;
+			this->map[y][x].type = TYPE_FLOOR;
+			this->map[y][x].seen = false;
                 }
         }
-        this->map[10][10].c = '.';
-        this->map[10][10].walk = true;
-        this->map[10][10].type = TYPE_FLOOR;
 }
 
+Game::~Game(){
+	delete this->player;
+	for( int y = 0; y < 19; y++){
+		delete this->map[y];
+	}
+	delete this->map;
+}
 int Game::Save(){
 	std::ofstream savefile;
 	savefile.open(getStr((char *)"Save to: "), std::ios::out | std::ios::binary);
